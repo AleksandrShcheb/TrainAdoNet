@@ -1,0 +1,26 @@
+DROP TABLE dbo.Info
+CREATE TABLE Info(
+	[Id] INT PRIMARY KEY IDENTITY,
+	[Name] NVARCHAR(50) NOT NULL,
+	[Age]  INT	 NOT NULL
+)
+GO
+
+INSERT INTO dbo.Info VALUES('Aleksandr', 22)
+
+GO
+
+CREATE PROCEDURE InsertUsers
+	@name NVARCHAR(50),
+	@age INT 
+	AS 
+	INSERT INTO dbo.Info VALUES (@name, @age)
+
+	SELECT SCOPE_IDENTITY()
+	
+GO
+
+CREATE PROCEDURE GetUsers
+AS
+    SELECT * FROM Info 
+GO
